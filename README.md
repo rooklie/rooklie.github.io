@@ -1,2 +1,0 @@
-# rooklie.github.io
-projects
