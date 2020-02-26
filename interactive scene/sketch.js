@@ -6,7 +6,7 @@
 // - describe what you did to take this project "above and beyond"
 
 let objspeedx = 1;
-let objspeedy = 1;
+let objspeedy = 0;
 let objposx = 10;
 let objposy = 10;
 
@@ -21,10 +21,28 @@ objex();
 
 }
 
+function movment(){
+
+
+
+
+}
+
+
+
+
+
+
+
 function objex() {
 
   ellipse (objposx, objposy, 10, 10)
+  
+  objspeedy = objspeedy + 0.005;
   objposy = objposy + objspeedy;
+  
+
+  objposx = objposx + objspeedx;
 
 
 
