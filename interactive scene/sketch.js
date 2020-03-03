@@ -7,25 +7,32 @@
 
 let objspeedx = 0;
 let objspeedy = 0;
-let objposx = 10;
+let objposx = 5;
 let objposy;
-let objswitch = 0;
+let objswitch = 1;
+let timeToWait;
+let timeLastChanged = 0;
+let bounceswitch = 0;
+let gravswitch = 0;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  objposy = height - 50;
+  objposy = height - 5;
+  timeToWait = (1000 / 60 + 0.00000000001);
 }
 
 
 function draw() {
   background(220);
 fill ("red");
-if (mouseX<=100 && mouseY >=height-100 && objswitch === 0){
-  shoot();
-  objswitch = 1;
+rect (0 ,height , 100 , - 100);
+if (mouseX<=100 && mouseY >=height-100){
+  fill("blue");
+  line(5, height - 5, mouseX,mouseY);
+  fill("red");
 }
-
+shoot();
 objex();
 console.log (objposy);
 }
@@ -33,13 +40,23 @@ console.log (objposy);
 function shoot(){
   let basex = 0;
   let basey = height;
+
+  if (mouseIsPressed){
+  objswitch = 0;
+  gravswitch = 1;
+
+  }
+  if (mouseX<=100 && mouseY >=height-100 && objswitch === 0){
+    objswitch = 1;
+   
+ 
   tempx = mouseX - basex ;
   tempy = mouseY - basey ;
   tempy = tempy * 1;
 
-  objspeedx = tempx /100;
-  objspeedy = tempy /50;
-
+  objspeedx = tempx /30;
+  objspeedy = tempy /30;
+  }
 }
 
 
@@ -51,16 +68,65 @@ function shoot(){
 function objex() {
 
   ellipse (objposx, objposy, 10, 10)
+  if (gravswitch === 1){
+    objspeedy = objspeedy + 0.010;
   
-  objspeedy = objspeedy + 0.010;
-  
-  objposy = objposy + objspeedy;
-  
-  objposx = objposx + objspeedx;
-  
-  if ( objposy >= height-10){
-  objspeedy = objspeedy * -0.75
+    objposy = objposy + objspeedy;
+    
+    objposx = objposx + objspeedx;
+
+
   }
+  
+  if ( objposy > height - 5){
+
+  if (millis() > timeToWait + timeLastChanged) {
+    timeLastChanged = millis();
+    objspeedy = objspeedy * -1.75
+
+
+
+
+  }
+
+
+
+
+  }
+
+
+  if ( objposy < 5){
+
+    if (millis() > timeToWait + timeLastChanged) {
+      timeLastChanged = millis();
+      objspeedy = objspeedy * -1.75
+  
+  
+  
+  
+    }
+  
+  
+  
+  
+    }
+  
+
+  if ( objposx >= width - 5 || objposx <= 5  ){
+
+    if (millis() > timeToWait + timeLastChanged) {
+      timeLastChanged = millis();
+      objspeedx = objspeedx * -1.25
+  
+  
+  
+  
+    }
+  
+  
+  
+  
+    }
 
 
 
