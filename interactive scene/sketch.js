@@ -24,15 +24,14 @@ function setup() {
 
 
 function draw() {
-  background(220);
-fill ("red");
-rect (0 ,height , 100 , - 100);
-if (mouseX<=100 && mouseY >=height-100){
-  fill("blue");
-  line(5, height - 5, mouseX,mouseY);
-  fill("red");
-}
+background(220);
+//draws the aiming box and the aiming line.
+boxline();
+//makes window walls
+barriers();
+//the calculations for the power and angle as well as the mouse click interaction
 shoot();
+//draws the ball and does the physics for it 
 objex();
 console.log (objposy);
 }
@@ -44,12 +43,10 @@ function shoot(){
   if (mouseIsPressed){
   objswitch = 0;
   gravswitch = 1;
-
   }
   if (mouseX<=100 && mouseY >=height-100 && objswitch === 0){
     objswitch = 1;
-   
- 
+
   tempx = mouseX - basex ;
   tempy = mouseY - basey ;
   tempy = tempy * 1;
@@ -74,61 +71,42 @@ function objex() {
     objposy = objposy + objspeedy;
     
     objposx = objposx + objspeedx;
-
-
   }
+
+
+}
+
+function boxline(){
+      
+  fill ("red");
+  rect (0 ,height , 100 , - 100);
+  if (mouseX<=100 && mouseY >=height-100){
+    fill("blue");
+    line(5, height - 5, mouseX,mouseY);
+    fill("red");
+  }
+
+
+}
+function barriers(){
+
+  if ( objposy >= height - 5 || objposy <= 5  ){
   
-  if ( objposy > height - 5){
-
-  if (millis() > timeToWait + timeLastChanged) {
-    timeLastChanged = millis();
-    objspeedy = objspeedy * -1.75
-
-
-
-
-  }
-
-
-
-
-  }
-
-
-  if ( objposy < 5){
-
+  
     if (millis() > timeToWait + timeLastChanged) {
       timeLastChanged = millis();
-      objspeedy = objspeedy * -1.75
-  
-  
-  
-  
+      objspeedy = objspeedy * -0.75
     }
+  }
+    if ( objposx >= width - 5 || objposx <= 5  ){
   
   
-  
-  
-    }
-  
-
-  if ( objposx >= width - 5 || objposx <= 5  ){
-
-    if (millis() > timeToWait + timeLastChanged) {
-      timeLastChanged = millis();
-      objspeedx = objspeedx * -1.25
-  
-  
-  
-  
-    }
-  
-  
-  
-  
+      if (millis() > timeToWait + timeLastChanged) {
+        timeLastChanged = millis();
+        objspeedx = objspeedx * -0.75
+      }
     }
 
-
-
+    
 
 }
