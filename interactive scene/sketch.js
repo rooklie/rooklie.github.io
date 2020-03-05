@@ -94,16 +94,45 @@ function barriers(){
   
   
     if (millis() > timeToWait + timeLastChanged) {
-      timeLastChanged = millis();
-      objspeedy = objspeedy * -0.75
+      if (objposy > height / 2) {
+        timeLastChanged = millis();
+        objposy = height - 5;
+        objspeedy = objspeedy * -0.75
+        
+      }
+
+      else{
+        timeLastChanged = millis();
+        objposy = 5;
+        objspeedy = objspeedy * -0.75
+
+      }
+     
+    
+   
+   
     }
   }
     if ( objposx >= width - 5 || objposx <= 5  ){
-  
+
   
       if (millis() > timeToWait + timeLastChanged) {
-        timeLastChanged = millis();
-        objspeedx = objspeedx * -0.75
+        if (objposx > width/ 2){
+          timeLastChanged = millis();
+          objposx = width - 5;
+          objspeedx = objspeedx * -0.75
+
+
+        }
+        else{
+          timeLastChanged = millis();
+          objposx = 5;
+          objspeedx = objspeedx * -0.75
+
+        }
+      
+      
+      
       }
     }
 
