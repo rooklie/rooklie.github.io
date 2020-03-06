@@ -37,8 +37,8 @@ console.log (objposy);
 }
 
 function shoot(){
-  let basex = 0;
-  let basey = height;
+  let basex = 5;
+  let basey = height - 5;
 
   if (mouseIsPressed){
   objswitch = 0;
