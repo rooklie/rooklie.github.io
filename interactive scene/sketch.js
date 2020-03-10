@@ -1,4 +1,4 @@
-// hooligan
+// bouncy boy
 // Samuel Gutierrez
 // 25/2/2020
 //
@@ -27,12 +27,14 @@ function draw() {
 background(220);
 //draws the aiming box and the aiming line.
 boxline();
-//makes window walls
+//makes window walls.
 barriers();
-//the calculations for the power and angle as well as the mouse click interaction
+//the calculations for the power and angle as well as the mouse click interaction.
 shoot();
-//draws the ball and does the physics for it 
+//draws the ball and does the physics for it .
 objex();
+// the function for manualing speeding the ball up using any key. note- hold down to see effects
+speedup();
 console.log (objposy);
 }
 
@@ -66,7 +68,7 @@ function objex() {
 
   ellipse (objposx, objposy, 10, 10)
   if (gravswitch === 1){
-    objspeedy = objspeedy + 0.010;
+    objspeedy = objspeedy + 0.020;
   
     objposy = objposy + objspeedy;
     
@@ -137,5 +139,13 @@ function barriers(){
     }
 
     
+
+}
+
+function speedup(){
+  if (keyIsPressed === true) {
+    objspeedx = objspeedx*1.005
+    objspeedy = objspeedy*1.005
+  }
 
 }
