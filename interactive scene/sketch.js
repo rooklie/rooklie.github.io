@@ -35,7 +35,6 @@ shoot();
 objex();
 // the function for manualing speeding the ball up using any key. note- hold down to see effects
 speedup();
-console.log (objposy);
 }
 
 function shoot(){
@@ -58,12 +57,6 @@ function shoot(){
   }
 }
 
-
-
-
-
-
-
 function objex() {
 
   ellipse (objposx, objposy, 10, 10)
@@ -74,7 +67,6 @@ function objex() {
     
     objposx = objposx + objspeedx;
   }
-
 
 }
 
@@ -109,9 +101,6 @@ function barriers(){
         objspeedy = objspeedy * -0.75
 
       }
-     
-    
-   
    
     }
   }
@@ -124,7 +113,6 @@ function barriers(){
           objposx = width - 5;
           objspeedx = objspeedx * -0.75
 
-
         }
         else{
           timeLastChanged = millis();
@@ -133,12 +121,8 @@ function barriers(){
 
         }
       
-      
-      
       }
     }
-
-    
 
 }
 
